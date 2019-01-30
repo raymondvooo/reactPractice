@@ -5,20 +5,34 @@ import './App.css';
 
 
 
-class Button extends React.Component {
+class Button extends Component {
   handleClick = () => {
     this.props.onClickFunction(this.props.incrementValue);
   }
   render() { 
   return(
-		<button onClick={this.handleClick}>
+		<button onClick = {this.handleClick}>
     +{this.props.incrementValue}
     </button>
     );	
 	 }
   }
+
+  class Decrement extends Component {
+    handleClick = () => {
+      this.props.onClickFunction(this.props.decrementValue);
+    }
+    render() {
+      return(
+        <button onClick = {this.handleClick}>
+          -{this.props.decrementValue}
+        </button>
+      );
+    }
+
+  }
   
-  class Reset extends React.Component {
+  class Reset extends Component {
     reset = () => {
     this.props.onClickFunction();
       console.log("heyman");
@@ -47,6 +61,11 @@ class App extends Component {
     counter: prevState.counter + incrementValue
    }));
   }
+
+  decrementCounter = (decrementValue) => {
+    this.setState((prevState) => ({
+      counter: prevState.counter - decrementValue}));
+  }
   
   resetClick = () => {
     this.setState(() => ({
@@ -57,10 +76,16 @@ class App extends Component {
     render() {
       return (
         <div>
-        <Button incrementValue={1} onClickFunction = {this.incrementCounter} />
-        <Button incrementValue={2} onClickFunction = {this.incrementCounter} />
-        <Button incrementValue={3} onClickFunction = {this.incrementCounter} />
-        <Button incrementValue={4} onClickFunction = {this.incrementCounter} />
+        <Button incrementValue = {1} onClickFunction = {this.incrementCounter} />
+        <Button incrementValue = {5} onClickFunction = {this.incrementCounter} />
+        <Button incrementValue = {20} onClickFunction = {this.incrementCounter} />
+        <Button incrementValue = {100} onClickFunction = {this.incrementCounter} />
+        <br></br>
+        <Decrement decrementValue = {1} onClickFunction = {this.decrementCounter} />
+        <Decrement decrementValue = {5} onClickFunction = {this.decrementCounter} />
+        <Decrement decrementValue = {20} onClickFunction = {this.decrementCounter} />
+        <Decrement decrementValue = {100} onClickFunction = {this.decrementCounter} />
+        <br></br>
         <Reset  onClickFunction = {this.resetClick}/>
         <Result counter = {this.state.counter}/>
         </div>
