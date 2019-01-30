@@ -1,95 +1,46 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Counter } from "./components/counter";
 
+const Index = () => <h2>Index</h2>;
+// const Counter = () => <h2>Counter</h2>;
+const About = () => <h2>About</h2>;
+const Users = () => <h2>Users</h2>;
 
+const AppRouter = () => (
+  <Router>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/counter/">Counter</Link>
+          </li>
+          <li>
+            <Link to="/about/">About</Link>
+          </li>
+          <li>
+            <Link to="/users/">Users</Link>
+          </li>
+        </ul>
+      </nav>
 
-
-class Button extends Component {
-  handleClick = () => {
-    this.props.onClickFunction(this.props.incrementValue);
-  }
-  render() { 
-  return(
-		<button onClick = {this.handleClick}>
-    +{this.props.incrementValue}
-    </button>
-    );	
-	 }
-  }
-
-  class Decrement extends Component {
-    handleClick = () => {
-      this.props.onClickFunction(this.props.decrementValue);
-    }
-    render() {
-      return(
-        <button onClick = {this.handleClick}>
-          -{this.props.decrementValue}
-        </button>
-      );
-    }
-
-  }
-  
-  class Reset extends Component {
-    reset = () => {
-    this.props.onClickFunction();
-      console.log("heyman");
-    }
-    render() {
-    return(
-    <button onClick={this.reset}>
-    Reset
-    </button>);
-    }
-  }
-  
-  const Result = (props) => {
-    return (
-      <div>{props.counter}</div>);
-  }
-  
+      <Route path="/" exact component={Index} />
+      <Route path="/counter/" component={Counter} />
+      <Route path="/about/" component={About} />
+      <Route path="/users/" component={Users} />
+    </div>
+  </Router>
+);
 
 class App extends Component {
-  state = {
-    counter: 0
-  };
-  
-  incrementCounter = (incrementValue) => {
-    this.setState((prevState) => ({
-    counter: prevState.counter + incrementValue
-   }));
-  }
-
-  decrementCounter = (decrementValue) => {
-    this.setState((prevState) => ({
-      counter: prevState.counter - decrementValue}));
-  }
-  
-  resetClick = () => {
-    this.setState(() => ({
-    counter: 0
-   }));
-  }
-  
-    render() {
-      return (
-        <div>
-        <Button incrementValue = {1} onClickFunction = {this.incrementCounter} />
-        <Button incrementValue = {5} onClickFunction = {this.incrementCounter} />
-        <Button incrementValue = {20} onClickFunction = {this.incrementCounter} />
-        <Button incrementValue = {100} onClickFunction = {this.incrementCounter} />
-        <br></br>
-        <Decrement decrementValue = {1} onClickFunction = {this.decrementCounter} />
-        <Decrement decrementValue = {5} onClickFunction = {this.decrementCounter} />
-        <Decrement decrementValue = {20} onClickFunction = {this.decrementCounter} />
-        <Decrement decrementValue = {100} onClickFunction = {this.decrementCounter} />
-        <br></br>
-        <Reset  onClickFunction = {this.resetClick}/>
-        <Result counter = {this.state.counter}/>
-        </div>
-        );
+  render() {
+    return (
+      <div>
+        <AppRouter />
+      </div>
+    );
   }
 }
 
