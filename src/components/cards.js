@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 const Card = props => {
   return (
     <div style={{ margin: "1em" }}>
-      <img src="{props.avatarURL}" width="100" />
+      <img src={props.avatar_url} width="100" alt="avatar" />
       <div
         style={{
           display: "inline-block",
@@ -11,52 +12,69 @@ const Card = props => {
         }}
       >
         <div style={{ fontSize: "1.25em", fontWeight: "bold" }}>
-          {props.name}
+          Name: {props.name}
         </div>
-        <div>{props.location}</div>
+        <div>Username: {props.login}</div>
+        <div>Location: {props.location}</div>
       </div>
     </div>
   );
 };
 
-let data = [
-  { name: "Heyman", 
-    avatarURL: "", 
-    location: "San Fran" },
-
-  { name: "XVC", 
-    avatarURL: "",
-    location: "SF" }
-];
-
 const CardList = props => {
   return (
     <div>
       {props.cards.map(card => (
-        <Card {...card} />
+        <Card key={card.id} {...card} />
       ))}
     </div>
   );
 };
 
 class Form extends Component {
+  state = { userName: ''}
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios.get(`https://api.github.com/users/${this.state.userName}`)
+    .then(resp => {
+      this.props.onSubmit(resp.data);
+      this.setState({ userName: ''});
+    });
+  };
   render() {
     return (
-      <form>
-        <input type="text" placeholder="Github username"/>
-        <button type ="submit">Add Card</button>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.userName}
+          onChange={(event) => this.setState({ userName: event.target.value})}
+          placeholder="Github username"
+          required
+        />
+        <button type="submit">Add Card</button>
       </form>
     );
   }
 }
 
 export class Cards extends Component {
+  state = {
+    cards: []
+  };
+
+  addNewCard = (cardInfo) => {
+    console.log(cardInfo)
+    this.setState(prevState => ({
+      cards: prevState.cards.concat(cardInfo)
+    }));
+  }
+
   render() {
     return (
       <div className="Cards">
         <header className="App-header">Cards</header>
-        <Form />
-        <CardList cards={data}/>
+        <Form onSubmit = {this.addNewCard}/>
+        <CardList cards={this.state.cards} />
       </div>
     );
   }
