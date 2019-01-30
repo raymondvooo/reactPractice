@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Counter } from "./components/counter";
+import { Cards } from "./components/cards";
 
 const Index = () => <h2>Index</h2>;
 // const Counter = () => <h2>Counter</h2>;
@@ -18,7 +19,7 @@ const AppRouter = () => (
             <Link to="/counter/">Counter</Link>
           </li>
           <li>
-            <Link to="/about/">About</Link>
+            <Link to="/cards/">Cards</Link>
           </li>
           <li>
             <Link to="/users/">Users</Link>
@@ -28,7 +29,7 @@ const AppRouter = () => (
 
       <Route path="/" exact component={Index} />
       <Route path="/counter/" component={Counter} />
-      <Route path="/about/" component={About} />
+      <Route path="/cards/" component={Cards} />
       <Route path="/users/" component={Users} />
     </div>
   </Router>
