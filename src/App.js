@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Counter } from "./components/counter";
-import { Cards } from "./components/cards";
+import Counter from "./components/counter/counter";
+import Cards from "./components/cards/cards";
 
 const Index = () => <h2>Index</h2>;
 // const Counter = () => <h2>Counter</h2>;

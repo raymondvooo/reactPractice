@@ -1,40 +1,8 @@
 import React, { Component } from "react";
-
-class Button extends Component {
-  handleClick = () => {
-    this.props.onClickFunction(this.props.incrementValue);
-  };
-  render() {
-    return (
-      <button onClick={this.handleClick}>+{this.props.incrementValue}</button>
-    );
-  }
-}
-
-class Decrement extends Component {
-  handleClick = () => {
-    this.props.onClickFunction(this.props.decrementValue);
-  };
-  render() {
-    return (
-      <button onClick={this.handleClick}>-{this.props.decrementValue}</button>
-    );
-  }
-}
-
-class Reset extends Component {
-  reset = () => {
-    this.props.onClickFunction();
-    console.log("heyman");
-  };
-  render() {
-    return <button onClick={this.reset}>Reset</button>;
-  }
-}
-
-const Result = props => {
-  return <div>{props.counter}</div>;
-};
+import Decrement from "./decrement";
+import Increment from "./increment";
+import Reset from "./reset";
+import Result from "./result";
 
 export class Counter extends Component {
   state = {
@@ -63,10 +31,16 @@ export class Counter extends Component {
     return (
       <div className="Counter">
         <header className="App-header">Counter</header>
-        <Button incrementValue={1} onClickFunction={this.incrementCounter} />
-        <Button incrementValue={5} onClickFunction={this.incrementCounter} />
-        <Button incrementValue={20} onClickFunction={this.incrementCounter} />
-        <Button incrementValue={100} onClickFunction={this.incrementCounter} />
+        <Increment incrementValue={1} onClickFunction={this.incrementCounter} />
+        <Increment incrementValue={5} onClickFunction={this.incrementCounter} />
+        <Increment
+          incrementValue={20}
+          onClickFunction={this.incrementCounter}
+        />
+        <Increment
+          incrementValue={100}
+          onClickFunction={this.incrementCounter}
+        />
         <br />
         <Decrement decrementValue={1} onClickFunction={this.decrementCounter} />
         <Decrement decrementValue={5} onClickFunction={this.decrementCounter} />
