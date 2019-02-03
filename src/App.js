@@ -4,11 +4,14 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Counter from "./components/counter/counter";
 import Cards from "./components/cards/cards";
+import Game from "./components/game/game";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faStar } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faStar)
 
 const Index = () => <h2>Index</h2>;
-// const Counter = () => <h2>Counter</h2>;
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
 
 const AppRouter = () => (
   <Router>
@@ -22,7 +25,7 @@ const AppRouter = () => (
             <Link to="/cards/">Cards</Link>
           </li>
           <li>
-            <Link to="/users/">Users</Link>
+            <Link to="/game/">Game</Link>
           </li>
         </ul>
       </nav>
@@ -30,7 +33,7 @@ const AppRouter = () => (
       <Route path="/" exact component={Index} />
       <Route path="/counter/" component={Counter} />
       <Route path="/cards/" component={Cards} />
-      <Route path="/users/" component={Users} />
+      <Route path="/game/" component={Game} />
     </div>
   </Router>
 );

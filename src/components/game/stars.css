@@ -1,0 +1,11 @@
+.svg-inline--fa.fa-w-18 {
+    width: 2.5em;
+  }
+  
+  .svg-inline--fa {
+    display: inline-block;
+    font-size: inherit;
+    height: 1.5em;
+    overflow: visible;
+    vertical-align: -0.125em;
+  }
