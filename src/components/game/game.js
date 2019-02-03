@@ -10,8 +10,15 @@ import Numbers from "./numbers";
 
 export class Game extends Component {
   state = {
-    cards: []
+    selectedNumbers: []
   };
+
+  select = (number) => {
+    this.setState(prevState => ({
+      selectedNumbers: prevState.selectedNumbers.concat(number)
+    }));
+  }
+  
 
 
   render() {
@@ -24,10 +31,10 @@ export class Game extends Component {
         <div className="row">
         <Stars />
         <Button />
-        <Answer />
+        <Answer selectedNumbers={this.state.selectedNumbers} />
         </div>
         <br />
-        <Numbers />
+        <Numbers selectedNumbers={this.state.selectedNumbers} select={this.select} />
         </div>
       </div>
     );
