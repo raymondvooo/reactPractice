@@ -76,36 +76,42 @@ export class Game extends Component {
   };
 
   acceptAnswer = () => {
-    this.setState(prevState => ({
-      usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
-      selectedNumbers: [],
-      correct: null,
-      numOfStars: Game.randomNumber(),
-    }), this.updateDone);
+    this.setState(
+      prevState => ({
+        usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
+        selectedNumbers: [],
+        correct: null,
+        numOfStars: Game.randomNumber()
+      }),
+      this.updateDone
+    );
   };
 
   redraw = () => {
     if (this.state.numOfRedraws === 0) {
       return;
     }
-    this.setState(prevState => ({
-      numOfStars: Game.randomNumber(),
-      selectedNumbers: [],
-      correct: null,
-      numOfRedraws: prevState.numOfRedraws - 1
-    }), this.updateDone);
+    this.setState(
+      prevState => ({
+        numOfStars: Game.randomNumber(),
+        selectedNumbers: [],
+        correct: null,
+        numOfRedraws: prevState.numOfRedraws - 1
+      }),
+      this.updateDone
+    );
   };
 
   possibleSolutions = ({ numOfStars, usedNumbers }) => {
     const possibleNumbers = new Array(9);
     for (let i = 0; i < possibleNumbers.length; i++) {
-      if (usedNumbers.indexOf(i+1) === -1) {
-      possibleNumbers[i] = i + 1;
+      if (usedNumbers.indexOf(i + 1) === -1) {
+        possibleNumbers[i] = i + 1;
       }
     }
-    console.log("used", usedNumbers.indexOf(2))
- 
-    console.log("HEYMAN", possibleNumbers, usedNumbers)
+    console.log("used", usedNumbers.indexOf(2));
+
+    console.log("HEYMAN", possibleNumbers, usedNumbers);
     return possibleCombinationSum(possibleNumbers, numOfStars);
   };
 
@@ -126,8 +132,8 @@ export class Game extends Component {
   };
 
   reset = () => {
-    this.setState(Game.initialState())
-  }
+    this.setState(Game.initialState());
+  };
 
   render() {
     const {
@@ -161,7 +167,7 @@ export class Game extends Component {
           </div>
           <br />
           {doneStatus ? (
-            <DoneFrame doneStatus={doneStatus} reset={this.reset}/>
+            <DoneFrame doneStatus={doneStatus} reset={this.reset} />
           ) : (
             <Numbers
               selectedNumbers={selectedNumbers}
