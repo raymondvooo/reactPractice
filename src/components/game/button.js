@@ -21,6 +21,7 @@ const Button = props => {
         <button
           disabled={props.selectedNumbers.length === 0}
           onClick={props.checkAnswer}
+          className="btn btn-outline-primary btn-lg"
         >
           =
         </button>
