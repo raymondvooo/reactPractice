@@ -8,6 +8,10 @@ const Numbers = props => {
     console.log(numArray);
   }
   const numberClassName = number => {
+    if (props.usedNumbers.indexOf(number) >= 0) {
+      return "used";
+    }
+
     if (props.selectedNumbers.indexOf(number) >= 0) {
       return "selected";
     }
@@ -17,7 +21,11 @@ const Numbers = props => {
     <div className="card text-center">
       <div>
         {numArray.map((number, i) => (
-          <span key={i} className={numberClassName(number)} onClick={() => props.select(number)}>
+          <span
+            key={i}
+            className={numberClassName(number)}
+            onClick={() => props.select(number)}
+          >
             {number}
           </span>
         ))}

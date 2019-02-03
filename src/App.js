@@ -7,9 +7,9 @@ import Cards from "./components/cards/cards";
 import Game from "./components/game/game";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faSync, faStar } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faStar)
+library.add(fab, faStar, faSync)
 
 const Index = () => <h2>Index</h2>;
 
